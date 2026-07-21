@@ -34,5 +34,13 @@ public interface ExpenseService {
 
     List<ExpenseResponseDto>searchExpenses(String keyword);
     List<ExpenseResponseDto> getExpensesByCategory(String keyword);
+    List<ExpenseResponseDto>getExpenseByDescription(String keyword);
+
+    List<ExpenseResponseDto> filterExpenses(
+            String category,
+            String title,
+            String description,
+            BigDecimal minAmount,
+            BigDecimal maxAmount);
 
 }

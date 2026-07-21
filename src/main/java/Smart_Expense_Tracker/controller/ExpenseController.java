@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -86,5 +87,27 @@ public class ExpenseController {
     @GetMapping("/category")
     public List<ExpenseResponseDto> getExpensesByCategory(@RequestParam String category){
         return expenseService.getExpensesByCategory(category);
+    }
+    @GetMapping("/description")
+    public List<ExpenseResponseDto> getExpensesByDescription(@RequestParam String description){
+        return expenseService.getExpenseByDescription(description);
+    }
+
+    @GetMapping("/filter")
+    public List<ExpenseResponseDto> filterExpenses(
+
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) BigDecimal minAmount,
+            @RequestParam(required = false) BigDecimal maxAmount) {
+
+        return expenseService.filterExpenses(
+                category,
+                title,
+                description,
+                minAmount,
+                maxAmount
+        );
     }
 }
